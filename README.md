@@ -19,7 +19,7 @@ npx skills add enemigos/skills --skill nuke -y
 Update installed skills:
 
 ```sh
-npx skills update -g
+npx skills update
 ```
 
 ## Skills
