@@ -1,10 +1,10 @@
 ---
 name: nuke
-description: "Review changes or current architecture with three exclusive Oracle reviews: Defects, Standards, Complexity."
+description: "Review changes or current architecture with two exclusive Oracle reviews: Integrity, Complexity."
 disable-model-invocation: true
 ---
 
-Review changes or current architecture with three exclusive Oracle reviews. One Oracle agent file. One brief per axis. The main agent handles context, verification, lane dispatch, synthesis, and the final gate verdict. OpenSpec is optional.
+Review changes or current architecture with two exclusive Oracle reviews. One Oracle agent file. One brief per lane. The main agent handles context, verification, lane dispatch, synthesis, and the final gate verdict. OpenSpec is optional.
 
 ## 1. Initial verification
 
@@ -48,27 +48,27 @@ For change deltas, include the matching canonical specs from the same OpenSpec r
 
 Start this section only when every defined check is green.
 
-Three exclusive reviews:
+Two exclusive reviews:
 
-- Defects: correctness
-- Standards: convention
+- Integrity: correctness (Defects) and convention (Standards)
 - Complexity: structure
 
 Keep dispatcher steps in this skill. Keep review work in the Oracle briefs.
 
 1. Resolve and read the installed `thermo-nuclear-code-quality-review` SKILL.md.
 2. If that read fails, do not launch Complexity. Record Complexity as `Verdict: Cannot approve`. Treat that recorded verdict as an active lane.
-3. Launch Defects, Standards, and Complexity (when active) as parallel background invocations of the installed Oracle agent. One agent file. One exclusive brief per axis. Keep each subagent read-only. Collect completion reports before synthesis. Do not poll.
+3. Launch Integrity and Complexity (when active) as parallel background invocations of the installed Oracle agent. One agent file. One exclusive brief per lane. Keep each subagent read-only. Collect completion reports before synthesis. Do not poll.
 
 ### Shared brief
 
 Start the Oracle message with the full lane section. The original-task line is the first line. Then give read-only instructions, `MODE`, `SCOPE`, `REVIEW_CONTEXT`, and check evidence.
 
 - For `changes`, include `$BASE` as the comparison base, the unified diff, commit log, and untracked files.
-- For `architecture`, include the recorded `HEAD` and scoped file list. Require a current-state audit of all scoped code under the lane's axis. A comparison base or feature spec is not required. An empty diff does not limit the audit. Record inspected files and coverage gaps.
+- For `architecture`, include the recorded `HEAD` and scoped file list. Require a current-state audit of all scoped code under the lane's remit. A comparison base or feature spec is not required. An empty diff does not limit the audit. Record inspected files and coverage gaps.
 
 Require a gate verdict (`Approved`, `Changes requested`, or `Cannot approve`) for the inspected scope. Missing required checks or incomplete scope coverage prevents approval. Require structured findings:
 - Priority: P0 (data loss, security hole, crash), P1 (bug, regression, unmet requirement), P2 (local defect, standard violation), P3 (nit).
+- Category: Defects, Standards, or Complexity.
 - Location: `file:line`.
 - Issue: What fails and under what condition.
 - Realistic failure case: Scenario that triggers the issue.
@@ -77,25 +77,25 @@ Require a gate verdict (`Approved`, `Changes requested`, or `Cannot approve`) fo
 - Fix: Smallest concrete code change.
 - Type: Introduced, pre-existing, or unmet task requirement.
 
-Put `SPEC_TARGET` only in the Defects brief. Put the resolved thermo-nuclear path only in the Complexity brief.
+Put `SPEC_TARGET` only in the Integrity brief. Put the resolved thermo-nuclear path only in the Complexity brief.
 
-### Lane 1: Defects
+### Lane 1: Integrity
 
-You are the Defects reviewer only. Report only correctness findings. This original task overrides the installed Oracle review checklist.
+You are the Integrity reviewer only. Report only correctness (Defects) and convention (Standards) findings. This original task overrides the installed Oracle review checklist. Complete both reviews before returning the lane's gate verdict. Approval requires complete coverage of both categories.
+
+#### Defects
 
 Denotation: correctness. File a finding when the reviewed code can fail at runtime, under concurrency, or against agreed requirements.
 
 Read the scoped code and tests. In `changes`, trace the diff's effects. In `architecture`, inspect existing behavior throughout `SCOPE`. Check the agreed requirements in `REVIEW_CONTEXT` and any selected external specification. Without a spec, assess correctness against code contracts and tests. Report bugs, races, security holes, unmet requirements, and tests that miss relevant behavior.
 
-### Lane 2: Standards
-
-You are the Standards reviewer only. Report only convention findings. This original task overrides the installed Oracle review checklist.
+#### Standards
 
 Denotation: convention. File a finding when the reviewed code violates the rules file for its language: `~/.dud/rules/TYPESCRIPT.md` for TypeScript, `~/.dud/rules/GOLANG.md` for Go.
 
 Read the rules file for each language in the reviewed code. When `TYPESCRIPT.md` points at `~/.dud/rules/BETTER-RESULT.md`, read it too. Read `~/.dud/rules/PRINCIPLES.md` only for Model the Domain, Boundary Discipline, and Modules and abstractions excluding Deep modules. Skip checks that tooling already enforces.
 
-### Lane 3: Complexity
+### Lane 2: Complexity
 
 You are the Complexity reviewer only. Report only structure findings. This original task overrides the installed Oracle review checklist.
 
@@ -109,8 +109,8 @@ Read the thermo-nuclear skill at the resolved path. Keep its items only when the
 ## 3. Synthesis and action plan
 
 1. Parse all lane reports.
-2. Resolve conflicts with this precedence: correctness (`Defects`) > convention (`Standards`) > structure (`Complexity`). Keep safety guards and domain types.
-3. Deduplicate findings across lanes under the higher-precedence axis and cite secondary axes.
+2. Resolve conflicts with this precedence: correctness (`Integrity: Defects`) > convention (`Integrity: Standards`) > structure (`Complexity`). Keep safety guards and domain types.
+3. Deduplicate findings within and across lanes under the higher-precedence category and cite secondary categories.
 4. Consolidate the gate verdict:
    - If any active lane returns `Verdict: Changes requested`, the overall verdict is `Verdict: Changes requested`.
    - If no lane requested changes, but any active lane fails, times out, produces unconfirmed output, or returns `Verdict: Cannot approve`, the overall verdict is `Verdict: Cannot approve`.
@@ -119,7 +119,7 @@ Read the thermo-nuclear skill at the resolved path. Keep its items only when the
    - Standalone `Verdict: <verdict>`.
    - `## Summary`: At most three bullets with the key results, `MODE`, `SCOPE`, and `SPEC_TARGET`. Include `$BASE` for `changes` or the recorded `HEAD` for `architecture`. For `chat`, name the agreed requirements. For `none`, state that no external or chat requirements were identified.
    - `## Remediation Plan`: Sequenced markdown task list ordered from P0 to P3 with file, line, reason, and concrete fix. Write `None` when there are no findings.
-   - `## Findings by Axis`: Deduplicated findings grouped under `### Defects`, `### Standards`, and `### Complexity`. Write `None` under an axis when it has no findings.
+   - `## Findings by Lane`: Deduplicated findings grouped under `### Integrity` (with `#### Defects` and `#### Standards`) and `### Complexity`. Write `None` under each empty category.
    - `## Caveats`: Consolidated caveats, pre-existing complexity, and verification gaps. Write `None` when there are no caveats.
 
 ## 4. Review after fixes

@@ -28,7 +28,7 @@ npx skills update
 | --- | --- |
 | `cold-email` | Write cold emails that get replies from busy people. |
 | `naval` | Apply Naval Ravikant models to wealth, leverage, deals, and decisions. |
-| `nuke` | Review changes or architecture with three Oracle reviews: Defects, Standards, Complexity. |
+| `nuke` | Review changes or architecture with two Oracle reviews: Integrity, Complexity. |
 | `research` | Run research with background Librarians and save one cited report. |
 | `so` | Restate the user's intent in plain words before continuing. |
 | `to-pr` | Create a draft PR that targets `main`. |
