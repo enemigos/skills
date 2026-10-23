@@ -26,6 +26,7 @@ npx skills update
 
 | Skill | What it does |
 | --- | --- |
+| `comms` | Enforce terse technical communication: findings first, STE100, plain ASCII, no narration. |
 | `cold-email` | Write cold emails that get replies from busy people. |
 | `naval` | Apply Naval Ravikant models to wealth, leverage, deals, and decisions. |
 | `nuke` | Review changes or architecture with two Oracle reviews: Integrity, Complexity. |
