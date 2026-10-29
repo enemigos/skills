@@ -6,7 +6,7 @@ Kit is the directory that contains this file. Target is the named project path, 
 
 ## Rule
 
-Every destination is a link to its source. A link cannot diverge from the kit, so the kit stays the single source and no copy needs a merge. A second copy of a kit file is the mistake this rule prevents.
+Every destination in Destinations and Global rules is a link to its source. A link cannot diverge from the kit, so the kit stays the single source and no copy needs a merge. A second copy of a kit file is the mistake this rule prevents.
 
 1. Link the destination when it is absent. Create a parent directory when it is absent.
 2. Leave the destination when it is a link to the source.
@@ -50,8 +50,8 @@ Some agents also store per-agent settings, such as a model, a tool list, and a t
    Done: the Global rules completion line is met.
 6. Go to heading MCP and apply it.
    Done: the MCP completion line is met.
-7. Go to heading External skills and apply it.
-   Done: the External skills completion line is met.
+7. Go to heading Skills and apply it.
+   Done: the Skills completion line is met.
 8. Go to heading OpenSpec and apply it.
    Done: the OpenSpec completion line is met.
 9. Print Linked, Skipped, and Conflicts.
@@ -132,12 +132,14 @@ The default profile includes `propose`, `explore`, `apply`, `update`, `sync`, an
 
 Done: step 2, 4, 6, or 8 added to Conflicts. Or `openspec --version` prints a version and, for project scope, each file from steps 10 and 11 exists or Conflicts lists it.
 
-## External skills
+## Skills
 
 Run these commands from target. Add `-g` when the scope is personal. Add `-a <agent>` to install for one agent.
 
+The skills CLI installs copies. The Rule does not apply to them. The first command installs the skills in `kit/skills/` from GitHub. To refresh a copy after you edit a kit skill, push the change and run `npx skills update`. The other commands install external skills.
+
 ```sh
-npx skills add enemigos/skills --skill cold-email naval nuke research so to-pr to-trello vercel -y
+npx skills add enemigos/skills --skill cold-email humanize naval nuke research so to-pr to-trello vercel yo -y
 npx skills add mattpocock/skills --skill codebase-design domain-modeling grill-me grill-with-docs grilling handoff improve-codebase-architecture wizard writing-for-agents -y
 npx skills add vercel/ai@ai-sdk -y
 npx skills add vercel-labs/agent-skills --skill writing-guidelines vercel-react-best-practices -y
