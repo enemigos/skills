@@ -33,7 +33,7 @@ Each directory in [skills/](./skills/) is one skill with a `SKILL.md`.
 | Skill | What it does |
 | --- | --- |
 | `cold-email` | Write cold emails that get replies from busy people. |
-| `humanize` | Revise text to reduce AI-detector flags while preserving meaning and voice. |
+| `humanize` | Strip AI writing tells from prose while preserving facts and voice. |
 | `naval` | Apply Naval Ravikant models to wealth, leverage, deals, and decisions. |
 | `nuke` | Review changes or architecture with two Oracle reviews: Integrity, Complexity. |
 | `research` | Deep research: the Oracle plans, parallel Librarians search, one cited answer in chat. |
