@@ -2,3 +2,4 @@ tmp
 .factory
 docs
 outputs/
+.DS_Store
