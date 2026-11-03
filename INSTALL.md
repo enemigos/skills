@@ -27,10 +27,6 @@ If target is kit, skip a link whose dest is the source file. Continue with the o
 | Source | Project dest | Personal dest |
 | --- | --- | --- |
 | `kit/AGENTS.md` | `target/AGENTS.md` | `target/AGENTS.md` |
-| `kit/rules/PRINCIPLES.md` | `~/.dud/rules/PRINCIPLES.md` | `~/.dud/rules/PRINCIPLES.md` |
-| `kit/rules/TYPESCRIPT.md` | `~/.dud/rules/TYPESCRIPT.md` | `~/.dud/rules/TYPESCRIPT.md` |
-| `kit/rules/GOLANG.md` | `~/.dud/rules/GOLANG.md` | `~/.dud/rules/GOLANG.md` |
-| `kit/rules/BETTER-RESULT.md` | `~/.dud/rules/BETTER-RESULT.md` | `~/.dud/rules/BETTER-RESULT.md` |
 | `kit/subagents/ORACLE.md` | `target/<agent dir>/agents/oracle.md` | `~/<agent dir>/agents/oracle.md` |
 | `kit/subagents/LIBRARIAN.md` | `target/<agent dir>/agents/librarian.md` | `~/<agent dir>/agents/librarian.md` |
 
@@ -42,20 +38,18 @@ Some agents also store per-agent settings, such as a model, a tool list, and a t
    Done: `kit/subagents/ORACLE.md` exists.
 2. Set target to the named path, or to the current working directory.
    Done: target exists and is a directory.
-3. Create `~/.dud/rules` when it is absent.
-   Done: `~/.dud/rules` is a directory.
-4. Link each source in Destinations to its dest. Use the Rule.
+3. Link each source in Destinations to its dest. Use the Rule.
    Done: each dest is a link, a skip, or a Conflicts entry.
-5. Go to heading Global rules and apply it.
+4. Go to heading Global rules and apply it.
    Done: the Global rules completion line is met.
-6. Go to heading MCP and apply it.
+5. Go to heading MCP and apply it.
    Done: the MCP completion line is met.
-7. Go to heading Skills and apply it.
+6. Go to heading Skills and apply it.
    Done: the Skills completion line is met.
-8. Go to heading OpenSpec and apply it.
+7. Go to heading OpenSpec and apply it.
    Done: the OpenSpec completion line is met.
-9. Print Linked, Skipped, and Conflicts.
-   Done: every dest from steps 4 to 8 is in exactly one list.
+8. Print Linked, Skipped, and Conflicts.
+   Done: every dest from steps 3 to 7 is in exactly one list.
 
 A kept `oracle.md` that is not a link to the kit does not carry these Oracle rules. Report that path in Conflicts.
 
@@ -139,7 +133,7 @@ Run these commands from target. Add `-g` when the scope is personal. Add `-a <ag
 The skills CLI installs copies. The Rule does not apply to them. The first command installs the skills in `kit/skills/` from GitHub. To refresh a copy after you edit a kit skill, push the change and run `npx skills update`. The other commands install external skills.
 
 ```sh
-npx skills add enemigos/skills --skill cold-email humanize naval nuke research so to-pr to-trello vercel yo -y
+npx skills add enemigos/skills --skill cold-email coding-standards humanize naval nuke research so to-pr to-trello vercel yo -y
 npx skills add mattpocock/skills --skill codebase-design domain-modeling grill-me grill-with-docs grilling handoff improve-codebase-architecture wizard writing-for-agents -y
 npx skills add vercel/ai@ai-sdk -y
 npx skills add vercel-labs/agent-skills --skill writing-guidelines vercel-react-best-practices -y

@@ -28,7 +28,7 @@ Recommend one option. Add one alternative only when its trade-off is materially 
 
 Investigate only what can change the answer. Stop when the caller can make the next decision.
 
-For every approval review, and whenever advice proposes or judges code structure, scan the headings of `~/.dud/rules/PRINCIPLES.md` and read each section that applies. Also read `TYPESCRIPT.md` for TypeScript and `GOLANG.md` for Go, in the same directory. Cite the rule behind a standards finding. The task wins over these standards. Name any conflict.
+For every approval review, and whenever advice proposes or judges code structure, resolve the installed `coding-standards` skill. Scan the headings of its `PRINCIPLES.md` and read each section that applies. Also read its `STANDARDS.md`, and its `TYPESCRIPT.md` when the target is TypeScript. Cite the rule behind a standards finding. The task wins over these standards. Name any conflict. If the skill is not installed, say so in Caveats and judge without it.
 
 ## Advice
 

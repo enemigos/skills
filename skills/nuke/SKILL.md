@@ -55,9 +55,10 @@ Two exclusive reviews:
 
 Keep dispatcher steps in this skill. Keep review work in the Oracle briefs.
 
-1. Resolve and read the installed `thermo-nuclear-code-quality-review` SKILL.md.
-2. If that read fails, do not launch Complexity. Record Complexity as `Verdict: Cannot approve`. Treat that recorded verdict as an active lane.
-3. Launch Integrity and Complexity (when active) as parallel background invocations of the installed Oracle agent. One agent file. One exclusive brief per lane. Keep each subagent read-only. Collect completion reports before synthesis. Do not poll.
+1. Resolve and read the installed `coding-standards` SKILL.md and confirm its `PRINCIPLES.md`, `STANDARDS.md`, and `TYPESCRIPT.md`. If that read fails, record both lanes as `Verdict: Cannot approve`, treat them as active lanes, and skip the rest of this section.
+2. Resolve and read the installed `thermo-nuclear-code-quality-review` SKILL.md.
+3. If that read fails, do not launch Complexity. Record Complexity as `Verdict: Cannot approve`. Treat that recorded verdict as an active lane.
+4. Launch Integrity and Complexity (when active) as parallel background invocations of the installed Oracle agent. One agent file. One exclusive brief per lane. Keep each subagent read-only. Collect completion reports before synthesis. Do not poll.
 
 ### Shared brief
 
@@ -77,7 +78,7 @@ Require a gate verdict (`Approved`, `Changes requested`, or `Cannot approve`) fo
 - Fix: Smallest concrete code change.
 - Type: Introduced, pre-existing, or unmet task requirement.
 
-Put `SPEC_TARGET` only in the Integrity brief. Put the resolved thermo-nuclear path only in the Complexity brief.
+Put the resolved `coding-standards` path in both briefs. Put `SPEC_TARGET` only in the Integrity brief. Put the resolved thermo-nuclear path only in the Complexity brief.
 
 ### Lane 1: Integrity
 
@@ -91,9 +92,9 @@ Read the scoped code and tests. In `changes`, trace the diff's effects. In `arch
 
 #### Standards
 
-Denotation: convention. File a finding when the reviewed code violates the rules file for its language: `~/.dud/rules/TYPESCRIPT.md` for TypeScript, `~/.dud/rules/GOLANG.md` for Go.
+Denotation: convention. File a finding when the reviewed code violates the `coding-standards` skill.
 
-Read the rules file for each language in the reviewed code. When `TYPESCRIPT.md` points at `~/.dud/rules/BETTER-RESULT.md`, read it too. Read `~/.dud/rules/PRINCIPLES.md` only for Model the Domain, Boundary Discipline, and Modules and abstractions excluding Deep modules. Skip checks that tooling already enforces.
+Read `STANDARDS.md` from the resolved `coding-standards` path. Read `TYPESCRIPT.md` only for TypeScript code, and its better-result rules only when the project uses `better-result`. Read `PRINCIPLES.md` only for Model the Domain, Boundary Discipline, and Modules and abstractions excluding Deep modules. Skip checks that tooling already enforces.
 
 ### Lane 2: Complexity
 
@@ -104,7 +105,7 @@ Denotation: structure.
 - In `changes`, file findings only for extra structure introduced against `$BASE`. Put pre-existing less-code opportunities in Caveats. Block this lane only on introduced complexity.
 - In `architecture`, assess existing structure throughout `SCOPE`. File pre-existing findings when unnecessary layers, duplication, or branching cause a concrete maintenance or behavior problem. Keep preferences and speculative rewrites in Caveats.
 
-Read the thermo-nuclear skill at the resolved path. Keep its items only when they concern extra structure. Read `~/.dud/rules/PRINCIPLES.md` only for Subtract Before You Add, Laziness Protocol, and Deep modules. Propose the smallest safe removal of unnecessary complexity. Leave necessary complex code in place.
+Read the thermo-nuclear skill at the resolved path. Keep its items only when they concern extra structure. Read `PRINCIPLES.md` from the resolved `coding-standards` path only for Subtract Before You Add, Laziness Protocol, and Deep modules. Propose the smallest safe removal of unnecessary complexity. Leave necessary complex code in place.
 
 ## 3. Synthesis and action plan
 

@@ -1,6 +1,6 @@
 # skills
 
-Agent skills and the agent kit by dud.cl. The skills work with agents that read the skills format, such as Claude Code, Droid, Cursor, and Codex. The kit holds the main agent rules, specialist prompts, and code rules.
+Agent skills and the agent kit by dud.cl. The skills work with agents that read the skills format, such as Claude Code, Droid, Cursor, and Codex. The kit holds the main agent rules, specialist prompts, and MCP config.
 
 ## Install
 
@@ -33,6 +33,7 @@ Each directory in [skills/](./skills/) is one skill with a `SKILL.md`.
 | Skill | What it does |
 | --- | --- |
 | `cold-email` | Write cold emails that get replies from busy people. |
+| `coding-standards` | Design principles and coding standards: general and TypeScript. |
 | `humanize` | Strip AI writing tells from prose while preserving facts and voice. |
 | `naval` | Apply Naval Ravikant models to wealth, leverage, deals, and decisions. |
 | `nuke` | Review changes or architecture with two Oracle reviews: Integrity, Complexity. |
@@ -43,12 +44,11 @@ Each directory in [skills/](./skills/) is one skill with a `SKILL.md`.
 | `vercel` | Run a Linear product design and Vercel design engineering review before launch. |
 | `yo` | Initialize a session with communication, coding, and agent rules. |
 
-Some skills read rules from `~/.dud/rules/` and use the Oracle and Librarian subagents. The [kit](#kit) holds those files.
+Some skills read the `coding-standards` skill and use the Oracle and Librarian subagents. The [kit](#kit) holds the subagent files.
 
 ## Kit
 
 - [AGENTS.md](./AGENTS.md): main agent rules
 - [ASSISTANT.md](./ASSISTANT.md): custom instructions for concise general chat in ChatGPT, Claude, and Gemini
 - [mcp.json](./mcp.json): MCP servers
-- [rules/](./rules/): design principles, TypeScript and Go standards, and `better-result` patterns. Install writes them to `~/.dud/rules/`.
 - [subagents/](./subagents/): Oracle and Librarian system prompts
