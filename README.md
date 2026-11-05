@@ -1,6 +1,6 @@
-# skills
+# Agents
 
-Agent skills and the agent kit by dud.cl. The skills work with agents that read the skills format, such as Claude Code, Droid, Cursor, and Codex. The kit holds the main agent rules, specialist prompts, and MCP config.
+Works on all agents. My personal setup.
 
 ## Install
 
