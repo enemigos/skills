@@ -44,11 +44,11 @@ Each directory in [skills/](./skills/) is one skill with a `SKILL.md`.
 | `vercel` | Run a Linear product design and Vercel design engineering review before launch. |
 | `yo` | Initialize a session with communication, coding, and agent rules. |
 
-Some skills read the `coding-standards` skill and use the Oracle and Librarian subagents. The [kit](#kit) holds the subagent files.
+The [kit](#kit) holds the Scout and Sidekick subagent files. Sidekick reads the `coding-standards` skill before editing.
 
 ## Kit
 
 - [AGENTS.md](./AGENTS.md): main agent rules
 - [ASSISTANT.md](./ASSISTANT.md): custom instructions for concise general chat in ChatGPT, Claude, and Gemini
 - [mcp.json](./mcp.json): MCP servers
-- [subagents/](./subagents/): Oracle and Librarian system prompts
+- [subagents/](./subagents/): Scout and Sidekick system prompts

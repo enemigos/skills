@@ -27,15 +27,15 @@ If target is kit, skip a link whose dest is the source file. Continue with the o
 | Source | Project dest | Personal dest |
 | --- | --- | --- |
 | `kit/AGENTS.md` | `target/AGENTS.md` | `target/AGENTS.md` |
-| `kit/subagents/ORACLE.md` | `target/<agent dir>/agents/oracle.md` | `~/<agent dir>/agents/oracle.md` |
-| `kit/subagents/LIBRARIAN.md` | `target/<agent dir>/agents/librarian.md` | `~/<agent dir>/agents/librarian.md` |
+| `kit/subagents/SCOUT.md` | `target/<agent dir>/agents/scout.md` | `~/<agent dir>/agents/scout.md` |
+| `kit/subagents/SIDEKICK.md` | `target/<agent dir>/agents/sidekick.md` | `~/<agent dir>/agents/sidekick.md` |
 
-Some agents also store per-agent settings, such as a model, a tool list, and a timeout, in the agent file. A link then removes that file's own content. Add the path to Conflicts and tell the user to paste the Oracle and Librarian text into the existing profile file.
+Some agents also store per-agent settings, such as a model, a tool list, and a timeout, in the agent file. A link then removes that file's own content. Add the path to Conflicts and tell the user to paste the Scout and Sidekick text into the existing profile file.
 
 ## Steps
 
 1. Set kit to the directory that contains this file.
-   Done: `kit/subagents/ORACLE.md` exists.
+   Done: `kit/subagents/SCOUT.md` exists.
 2. Set target to the named path, or to the current working directory.
    Done: target exists and is a directory.
 3. Link each source in Destinations to its dest. Use the Rule.
@@ -51,7 +51,7 @@ Some agents also store per-agent settings, such as a model, a tool list, and a t
 8. Print Linked, Skipped, and Conflicts.
    Done: every dest from steps 3 to 7 is in exactly one list.
 
-A kept `oracle.md` that is not a link to the kit does not carry these Oracle rules. Report that path in Conflicts.
+A kept `scout.md` or `sidekick.md` that is not a link to the kit does not carry these rules. Report that path in Conflicts.
 
 ## Global rules
 
