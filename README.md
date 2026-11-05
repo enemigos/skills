@@ -36,8 +36,8 @@ Each directory in [skills/](./skills/) is one skill with a `SKILL.md`.
 | `coding-standards` | Design principles and coding standards: general and TypeScript. |
 | `humanize` | Strip AI writing tells from prose while preserving facts and voice. |
 | `naval` | Apply Naval Ravikant models to wealth, leverage, deals, and decisions. |
-| `nuke` | Review changes or architecture with two Oracle reviews: Integrity, Complexity. |
-| `research` | Deep research: the Oracle plans, parallel Librarians search, one cited answer in chat. |
+| `nuke` | Review changes or architecture with two subagent reviews: Integrity, Complexity. |
+| `research` | Deep research: you plan, parallel Scout agents search, one cited answer in chat. |
 | `so` | Restate the user's intent in plain words before continuing. |
 | `to-pr` | Create a draft PR that targets `main`. |
 | `to-trello` | Turn a conversation or rough idea into short Trello cards. |

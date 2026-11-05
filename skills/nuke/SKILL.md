@@ -1,10 +1,10 @@
 ---
 name: nuke
-description: "Review changes or current architecture with two exclusive Oracle reviews: Integrity, Complexity."
+description: "Review changes or current architecture with two exclusive subagent reviews: Integrity, Complexity."
 disable-model-invocation: true
 ---
 
-Review changes or current architecture with two exclusive Oracle reviews. One Oracle agent file. One brief per lane. The main agent handles context, verification, lane dispatch, synthesis, and the final gate verdict. OpenSpec is optional.
+Review changes or current architecture with two exclusive subagent reviews. Invoke a general subagent per lane, running on a frontier model at its highest reasoning effort. One brief per lane. The main agent handles context, verification, lane dispatch, synthesis, and the final gate verdict. OpenSpec is optional.
 
 ## 1. Initial verification
 
@@ -53,16 +53,16 @@ Two exclusive reviews:
 - Integrity: correctness (Defects) and convention (Standards)
 - Complexity: structure
 
-Keep dispatcher steps in this skill. Keep review work in the Oracle briefs.
+Keep dispatcher steps in this skill. Keep review work in the lane briefs.
 
 1. Resolve and read the installed `coding-standards` SKILL.md and confirm its `PRINCIPLES.md`, `STANDARDS.md`, and `TYPESCRIPT.md`. If that read fails, record both lanes as `Verdict: Cannot approve`, treat them as active lanes, and skip the rest of this section.
 2. Resolve and read the installed `thermo-nuclear-code-quality-review` SKILL.md.
 3. If that read fails, do not launch Complexity. Record Complexity as `Verdict: Cannot approve`. Treat that recorded verdict as an active lane.
-4. Launch Integrity and Complexity (when active) as parallel background invocations of the installed Oracle agent. One agent file. One exclusive brief per lane. Keep each subagent read-only. Collect completion reports before synthesis. Do not poll.
+4. Launch Integrity and Complexity (when active) as parallel background subagents, each on a frontier model at its highest reasoning effort. One exclusive brief per lane. Keep each subagent read-only. Collect completion reports before synthesis. Do not poll. When the host cannot choose the subagent's model or effort, record that in Caveats.
 
 ### Shared brief
 
-Start the Oracle message with the full lane section. The original-task line is the first line. Then give read-only instructions, `MODE`, `SCOPE`, `REVIEW_CONTEXT`, and check evidence.
+Start the subagent brief with the full lane section. The original-task line is the first line. Then give read-only instructions, `MODE`, `SCOPE`, `REVIEW_CONTEXT`, and check evidence.
 
 - For `changes`, include `$BASE` as the comparison base, the unified diff, commit log, and untracked files.
 - For `architecture`, include the recorded `HEAD` and scoped file list. Require a current-state audit of all scoped code under the lane's remit. A comparison base or feature spec is not required. An empty diff does not limit the audit. Record inspected files and coverage gaps.
@@ -82,7 +82,7 @@ Put the resolved `coding-standards` path in both briefs. Put `SPEC_TARGET` only 
 
 ### Lane 1: Integrity
 
-You are the Integrity reviewer only. Report only correctness (Defects) and convention (Standards) findings. This original task overrides the installed Oracle review checklist. Complete both reviews before returning the lane's gate verdict. Approval requires complete coverage of both categories.
+You are the Integrity reviewer only. Report only correctness (Defects) and convention (Standards) findings. This brief is your complete review checklist. Complete both reviews before returning the lane's gate verdict. Approval requires complete coverage of both categories.
 
 #### Defects
 
@@ -98,7 +98,7 @@ Read `STANDARDS.md` from the resolved `coding-standards` path. Read `TYPESCRIPT.
 
 ### Lane 2: Complexity
 
-You are the Complexity reviewer only. Report only structure findings. This original task overrides the installed Oracle review checklist.
+You are the Complexity reviewer only. Report only structure findings. This brief is your complete review checklist.
 
 Denotation: structure.
 
@@ -125,7 +125,7 @@ Read the thermo-nuclear skill at the resolved path. Keep its items only when the
 
 ## 4. Review after fixes
 
-Apply Oracle remediations in the implementation session.
+Apply the remediations in the implementation session.
 
 1. For a rerun, retain `MODE`, `SCOPE`, `REVIEW_CONTEXT`, and `SPEC_TARGET`. For `changes`, retain the literal `$BASE` commit hash. If scope, requirements, or artifact paths change, resolve them again and disclose the change.
 2. For `changes`, collect the current diff, commit log, and untracked files against `$BASE`. For `architecture`, refresh `HEAD` and the scoped file list. Reinspect the current contents in either mode.
