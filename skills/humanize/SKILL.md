@@ -73,10 +73,12 @@ Use the amount of polish the context calls for. Preserve natural quirks supporte
 13. **Register mismatch.** AI writes internal notes like academic papers and informal emails like formal letters. Adjust formality to the channel and recipient.
 14. **Plastic perfection.** AI never stumbles or leaves natural rough edges. Do not manufacture fake typos, but allow natural asymmetry, varied rhythm, and earned bluntness.
 15. **Missing contractions.** AI writes stiff uncontracted forms (`do not`, `cannot`, `it is`). Use natural contractions (`don't`, `can't`, `it's`) where register allows.
-16. **Em dash as a universal connector.** AI overuses dashes as glue between labels and values:
+16. **Dashes as universal connectors.** In editable prose, use punctuation or wording that expresses the relationship between clauses and between labels and values. Rewrite connector em dashes, spaced hyphens (` - `), double hyphens (` -- `), and spaced en dashes (` – `) instead of swapping one dash form for another. Choose a period, colon, parentheses, conjunction, grammatically appropriate comma, or direct prose.
+   - Avoid: `The patch is small - it preserves the API.`
+   - Prefer: `The patch is small. It preserves the API.`
    - Avoid: `Black Box -- without prior credentials`
    - Prefer: `Black Box (without prior credentials)` or `Black Box without prior credentials`
-   If multiple lines use dashes to attach values to labels, replace them with parentheses, commas, colons, or restructure into direct prose.
+   Leave compound-word hyphens, numeric ranges, minus signs, Markdown list markers, and code unchanged.
 
 ## Check the revision
 
