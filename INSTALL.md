@@ -133,7 +133,7 @@ Run these commands from target. Add `-g` when the scope is personal. Add `-a <ag
 The skills CLI installs copies. The Rule does not apply to them. The first command installs the skills in `kit/skills/` from GitHub. To refresh a copy after you edit a kit skill, push the change and run `npx skills update`. The other commands install external skills.
 
 ```sh
-npx skills add enemigos/skills --skill cold-email coding-standards humanize naval nuke research so to-pr to-trello vercel yo -y
+npx skills add enemigos/skills --skill adhd cold-email coding-standards humanize naval nuke research so to-pr to-trello vercel yo -y
 npx skills add mattpocock/skills --skill codebase-design domain-modeling grill-me grill-with-docs grilling handoff improve-codebase-architecture wizard writing-for-agents -y
 npx skills add vercel/ai@ai-sdk -y
 npx skills add vercel-labs/agent-skills --skill writing-guidelines vercel-react-best-practices -y

@@ -32,6 +32,7 @@ Each directory in [skills/](./skills/) is one skill with a `SKILL.md`.
 
 | Skill | What it does |
 | --- | --- |
+| `adhd` | Write ADHD-friendly answers and reset explanations that were unclear or overwhelming. |
 | `cold-email` | Write cold emails that get replies from busy people. |
 | `coding-standards` | Design principles and coding standards: general and TypeScript. |
 | `humanize` | Strip AI writing tells from prose while preserving facts and voice. |
