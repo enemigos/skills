@@ -4,25 +4,27 @@ Works on all agents. My personal setup.
 
 ## Install
 
-All skills, global:
+Always install skills globally.
+
+All skills:
 
 ```sh
 npx skills add enemigos/skills --skill '*' -g -y
 ```
 
-One skill, one project:
+One skill:
 
 ```sh
-npx skills add enemigos/skills --skill nuke -y
+npx skills add enemigos/skills --skill nuke -g -y
 ```
 
-Update installed skills:
+Update global skills:
 
 ```sh
-npx skills update
+npx skills update -g
 ```
 
-Without `-a`, the installer walks a registry of 79 agent tools and links every one it detects. AI agents installing for a user: ask which agents they use, then pass the IDs with `-a`, for example `-a droid cursor codex`. The full ID list is in the CLI's [agents table](https://github.com/vercel-labs/skills/blob/main/docs/agents.md).
+Ask which agents the user runs, then pass every selected ID with `-a`, for example `-a droid claude-code`. Without `-a`, the installer links every agent it detects. The full ID list is in the CLI's [agents table](https://github.com/vercel-labs/skills/blob/main/docs/agents.md).
 
 Follow [INSTALL.md](./INSTALL.md) to install the kit and the skills.
 
@@ -34,13 +36,15 @@ Each directory in [skills/](./skills/) is one skill with a `SKILL.md`.
 | --- | --- |
 | `adhd` | Write ADHD-friendly answers and reset explanations that were unclear or overwhelming. |
 | `cold-email` | Write cold emails that get replies from busy people. |
+| `cli-design` | Design and review command-line interfaces, output contracts, interaction, and safety. |
 | `coding-standards` | Design principles and coding standards: general and TypeScript. |
 | `humanize` | Strip AI writing tells from prose while preserving facts and voice. |
 | `naval` | Apply Naval Ravikant models to wealth, leverage, deals, and decisions. |
 | `nuke` | Review changes or architecture with two subagent reviews: Integrity, Complexity. |
 | `research` | Deep research: you plan, parallel Scout agents search, one cited answer in chat. |
 | `so` | Restate the user's intent in plain words before continuing. |
-| `to-pr` | Create a draft PR that targets `main`. |
+| `to-draft` | Write and publish a PR title and body for built work. |
+| `to-slices` | Turn a conversation into parallel vertical-slice plans. |
 | `to-trello` | Turn a conversation or rough idea into short Trello cards. |
 | `vercel` | Run a Linear product design and Vercel design engineering review before launch. |
 | `yo` | Initialize a session with communication, coding, and agent rules. |

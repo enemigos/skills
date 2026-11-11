@@ -1,8 +1,10 @@
 # Install
 
-You install this kit into a project. The install can also link the rules to your global agent instructions.
+You install this kit globally for each agent the user selects.
 
-Kit is the directory that contains this file. Target is the named project path, or the current working directory. Agent dir is the config directory of the agent that runs this guide. Use the agent dir name that your agent reads.
+Kit is the directory that contains this file. Agent dir is the config directory of an agent the user selects.
+
+Every destination is global. Use each selected agent's global configuration and pass `-g` to every skills command.
 
 ## Rule
 
@@ -18,17 +20,12 @@ Never write a copy of a kit file beside a destination, such as a `.bak`, `.orig`
 
 Do not edit a destination. Edit its source.
 
-Default scope is project. If the user asks for a personal install, use the personal dest.
-
-If target is kit, skip a link whose dest is the source file. Continue with the other dests.
-
 ## Destinations
 
-| Source | Project dest | Personal dest |
-| --- | --- | --- |
-| `kit/AGENTS.md` | `target/AGENTS.md` | `target/AGENTS.md` |
-| `kit/subagents/SCOUT.md` | `target/<agent dir>/agents/scout.md` | `~/<agent dir>/agents/scout.md` |
-| `kit/subagents/SIDEKICK.md` | `target/<agent dir>/agents/sidekick.md` | `~/<agent dir>/agents/sidekick.md` |
+| Source | Global dest |
+| --- | --- |
+| `kit/subagents/SCOUT.md` | `~/<agent dir>/agents/scout.md` |
+| `kit/subagents/SIDEKICK.md` | `~/<agent dir>/agents/sidekick.md` |
 
 Some agents also store per-agent settings, such as a model, a tool list, and a timeout, in the agent file. A link then removes that file's own content. Add the path to Conflicts and tell the user to paste the Scout and Sidekick text into the existing profile file.
 
@@ -36,9 +33,9 @@ Some agents also store per-agent settings, such as a model, a tool list, and a t
 
 1. Set kit to the directory that contains this file.
    Done: `kit/subagents/SCOUT.md` exists.
-2. Set target to the named path, or to the current working directory.
-   Done: target exists and is a directory.
-3. Link each source in Destinations to its dest. Use the Rule.
+2. Ask the user which agents they use.
+   Done: every selected agent is named.
+3. Link each source in Destinations to each selected agent's global dest. Use the Rule.
    Done: each dest is a link, a skip, or a Conflicts entry.
 4. Go to heading Global rules and apply it.
    Done: the Global rules completion line is met.
@@ -46,10 +43,8 @@ Some agents also store per-agent settings, such as a model, a tool list, and a t
    Done: the MCP completion line is met.
 6. Go to heading Skills and apply it.
    Done: the Skills completion line is met.
-7. Go to heading OpenSpec and apply it.
-   Done: the OpenSpec completion line is met.
-8. Print Linked, Skipped, and Conflicts.
-   Done: every dest from steps 3 to 7 is in exactly one list.
+7. Print Linked, Skipped, and Conflicts.
+   Done: every dest from steps 3 to 6 is in exactly one list.
 
 A kept `scout.md` or `sidekick.md` that is not a link to the kit does not carry these rules. Report that path in Conflicts.
 
@@ -57,8 +52,8 @@ A kept `scout.md` or `sidekick.md` that is not a link to the kit does not carry 
 
 Each agent reads its own global instructions file. The install links the kit rules into the global file of each agent the user uses. When the user picks no agent, skip this section.
 
-1. Ask the user which agents in the table they use.
-2. Use the Rule to link `kit/AGENTS.md` to the dest of each picked agent.
+1. Use the agents selected in Steps.
+2. Use the Rule to link `kit/AGENTS.md` to the global dest of each picked agent.
 
 | Agent | Dest |
 | --- | --- |
@@ -83,7 +78,7 @@ Done: each picked agent is a link, a skip, or a Conflicts entry. Each agent the 
 
 ## MCP
 
-MCP dest is the MCP config file that your agent reads. Use `target/<agent dir>/mcp.json` for project scope and `~/<agent dir>/mcp.json` for personal scope. Use another path when your agent reads MCP config from there.
+MCP dest is the global MCP config file that each selected agent reads. Use `~/<agent dir>/mcp.json`, or another global path when that agent reads MCP config from there.
 
 Read `kit/mcp.json`. Root key is the key that the dest format uses for the server map. Most agents use `mcpServers`.
 
@@ -97,65 +92,37 @@ Report when `EXA_API_KEY` is unset.
 
 Done: dest contains every key from the kit server map, or Conflicts lists dest.
 
-## OpenSpec
-
-OpenSpec adds the `opsx` commands to your agent. The flow uses `propose`, `apply`, and `archive`.
-
-| Agent | Tool ID | Skills dir | Propose command |
-| --- | --- | --- | --- |
-| Claude Code | `claude` | `.claude/skills` | `/opsx:propose` |
-| Droid | `factory` | `.factory/skills` | `/opsx-propose` |
-| Cursor | `cursor` | `.cursor/skills` | `/opsx-propose` |
-| Codex | `codex` | `.agents/skills` | `$openspec-propose` |
-
-1. Check that Node.js 20.19.0 or later is on the PATH.
-2. If it is not, add this heading to Conflicts.
-3. If `openspec --version` fails, run `npm install -g @fission-ai/openspec@latest`.
-4. If the install command fails, add the command and its exit status to Conflicts.
-5. If the scope is personal, stop here.
-6. If your agent is not in the table, add this heading to Conflicts.
-7. Set Present to the paths that match `target/openspec` and `target/<skills dir>/openspec-*`.
-8. If Present is not empty, add each path to Conflicts.
-9. Run `openspec init --tools <tool id>` from target.
-10. If `target/openspec/config.yaml` is absent, add its path to Conflicts.
-11. If no file matches `target/<skills dir>/openspec-*/SKILL.md`, add the pattern to Conflicts.
-
-After step 2, 4, 6, or 8 adds to Conflicts, skip all later steps. For personal scope, run steps 6 to 11 later in each project. Never run `openspec update`. It can overwrite generated files.
-
-The default profile includes `propose`, `explore`, `apply`, `update`, `sync`, and `archive`.
-
-Done: step 2, 4, 6, or 8 added to Conflicts. Or `openspec --version` prints a version and, for project scope, each file from steps 10 and 11 exists or Conflicts lists it.
-
 ## Skills
 
-Run these commands from target. Add `-g` when the scope is personal. Add `-a <agent>` to install for one agent.
+Run every command globally for every agent selected in Steps. Add `-a` followed by every selected agent ID, for example `-a droid claude-code`.
 
-The skills CLI installs copies. The Rule does not apply to them. The first command installs the skills in `kit/skills/` from GitHub. To refresh a copy after you edit a kit skill, push the change and run `npx skills update`. The other commands install external skills.
+The skills CLI installs copies. The Rule does not apply to them. The first command installs the skills in `kit/skills/` from GitHub. To refresh a copy after you edit a kit skill, push the change and run `npx skills update -g`. The other commands install external skills.
 
 ```sh
-npx skills add enemigos/skills --skill adhd cold-email coding-standards humanize naval nuke research so to-pr to-trello vercel yo -y
-npx skills add mattpocock/skills --skill codebase-design domain-modeling grill-me grill-with-docs grilling handoff improve-codebase-architecture wizard writing-for-agents -y
-npx skills add vercel/ai@ai-sdk -y
-npx skills add vercel-labs/agent-skills --skill writing-guidelines vercel-react-best-practices -y
-npx skills add cloudflare/skills --skill cloudflare workers-best-practices -y
-npx skills add raphaelsalaja/userinterface-wiki@userinterface-wiki -y
-npx skills add superdesigndev/treg --skill treg -y
-npx skills add Jakubantalik/transitions.dev --skill transitions-dev -y
-npx skills add cursor/plugins --skill thermo-nuclear-code-quality-review deslop -y
-npx skills add motiondivision/ai-kit --skill motion -y
-npx skills add emilkowalski/skills --skill find-animation-opportunities mobile-native break-ui -y
-npx skills add haowjy/creative-writing-skills --skill creative-writing-craft -y
-npx skills add dmmulroy/skills --skill bro -y
-npx skills add dmmulroy/better-result --skill adopt-better-result -y
-npx skills add supabase/agent-skills --skill supabase supabase-postgres-best-practices -y
-npx skills add jakubkrehel/skills --skill better-writing better-interface -y
-npx skills add vercel-labs/agent-browser --skill agent-browser -y
-npx skills add crafter-station/skills --skill cli-build cli-audit surface-recon -y
+npx skills add enemigos/skills --skill adhd cold-email cli-design coding-standards humanize naval nuke research so to-draft to-slices to-trello vercel yo -g -y
+npx skills add mattpocock/skills --skill codebase-design domain-modeling grill-me grill-with-docs grilling handoff improve-codebase-architecture wizard writing-for-agents -g -y
+npx skills add vercel/ai@ai-sdk -g -y
+npx skills add vercel-labs/agent-skills --skill writing-guidelines vercel-react-best-practices -g -y
+npx skills add cloudflare/skills --skill cloudflare workers-best-practices -g -y
+npx skills add raphaelsalaja/userinterface-wiki@userinterface-wiki -g -y
+npx skills add superdesigndev/treg --skill treg -g -y
+npx skills add Jakubantalik/transitions.dev --skill transitions-dev -g -y
+npx skills add cursor/plugins --skill thermo-nuclear-code-quality-review deslop -g -y
+npx skills add motiondivision/ai-kit --skill motion -g -y
+npx skills add emilkowalski/skills --skill find-animation-opportunities mobile-native break-ui -g -y
+npx skills add haowjy/creative-writing-skills --skill creative-writing-craft -g -y
+npx skills add dmmulroy/skills --skill bro -g -y
+npx skills add dmmulroy/better-result --skill adopt-better-result -g -y
+npx skills add supabase/agent-skills --skill supabase supabase-postgres-best-practices -g -y
+npx skills add jakubkrehel/skills --skill afk better-writing better-interface state-machine -g -y
+npx skills add vercel-labs/agent-browser --skill agent-browser -g -y
+npx skills add lucasmarkes/hairline -g -y
+npx skills add caldoai/skills --skill untangle-codebase -g -y
 ```
 
-Done: each command exits 0, or Conflicts records the command and the exit status.
+Done: each command exits 0 and its installation summary covers every selected agent, or Conflicts records the command and the exit status.
 
-If the user names a subset, run only the matching commands. Keep the same flags.
+If the user names a subset, run only the matching commands. Keep the same global flag and selected agent IDs.
 
 Go to heading Grill when the user asks which grill skill to use.
 
